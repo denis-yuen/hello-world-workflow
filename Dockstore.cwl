@@ -50,7 +50,7 @@ outputs:
 baseCommand: ["bash", "-c"]
 arguments:
   - valueFrom:
-      engine: cwl:JsonPointer
+      engine: "#node-engine"
       script: |
         "cat " + $job.hello_input.path + " > hello-output.txt &&"
             + " ls " + $job.ref_file_1.path + " >> hello-output.txt && "
