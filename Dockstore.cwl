@@ -13,7 +13,12 @@ dct:creator:
 requirements:
   - class: DockerRequirement
     dockerPull: "quay.io/collaboratory/workflow-helloworld:master"
-  - { import: node-engine.cwl }
+  - class: ExpressionEngineRequirement
+    id: "#node-engine"
+    requirements:
+    - class: DockerRequirement
+      dockerPull: commonworkflowlanguage/nodejs-engine
+    engineCommand: cwlNodeEngine.js
 
 hints:
   - class: ResourceRequirement
@@ -45,7 +50,7 @@ outputs:
 baseCommand: ["bash", "-c"]
 arguments:
   - valueFrom:
-      engine: node-engine.cwl
+      engine: cwl:JsonPointer
       script: |
         "cat " + $job.hello_input.path + " > hello-output.txt &&"
             + " ls " + $job.ref_file_1.path + " >> hello-output.txt && "
