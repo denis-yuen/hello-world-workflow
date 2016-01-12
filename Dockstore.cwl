@@ -5,6 +5,8 @@ description: "Markdown description text here"
 id: "HelloWorld"
 label: "HelloWorld Tool"
 
+cwlVersion: "cwl:draft-3.dev3"
+
 dct:creator:
   "@id": "http://orcid.org/0000-0003-3566-7705"
   foaf:name: Peter Amstutz
