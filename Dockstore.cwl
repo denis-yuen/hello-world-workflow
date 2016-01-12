@@ -46,7 +46,6 @@ outputs:
 
 baseCommand: ["bash", "-c"]
 arguments:
-  - valueFrom: |
-              "cat " + $job.hello_input.path + " > hello-output.txt &&"
-              + " ls " + $job.ref_file_1.path + " >> hello-output.txt && "
-              + " head -20 " + $job.ref_file_2.path + " >> hello-output.txt"
+  - valueFrom: $("cat " + inputs.hello_input.path + " > hello-output.txt &&"
+              + " ls " + inputs.ref_file_1.path + " >> hello-output.txt && "
+              + " head -20 " + inputs.ref_file_2.path + " >> hello-output.txt")
