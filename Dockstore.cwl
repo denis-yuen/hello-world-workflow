@@ -40,12 +40,27 @@ inputs:
     type: File
     description: "this describes an input file that should be provided before execution"
 
+  - id: "#arrayed_input"
+    type:
+      type: array
+      items: File
+    description: "this demonstrates a workflow that takes an array of inputs, at least 2"
+
 outputs:
   - id: "#hello_output"
     type: File
     outputBinding:
       glob: hello-output.txt
     description: "this describes an output file that should be saved after execution"
+
+  - id: "#wc_output"
+    type:
+      type: array
+      items: File 
+    outputBinding:
+      glob: wc-output*.txt
+    description: "this describes an output file that should be saved after execution"
+
 
 baseCommand: ["bash", "-c"]
 arguments:
@@ -54,4 +69,6 @@ arguments:
       script: |
         "cat " + $job.hello_input.path + " > hello-output.txt &&"
             + " ls " + $job.ref_file_1.path + " >> hello-output.txt && "
-            + " head -20 " + $job.ref_file_2.path + " >> hello-output.txt"
+            + " head -20 " + $job.ref_file_2.path + " >> hello-output.txt && "
+            + " wc -l " + $job.arrayed_input[0].path + " >> wc-output0.txt &&"
+            + " wc -l " + $job.arrayed_input[1].path + " >> wc-output1.txt"

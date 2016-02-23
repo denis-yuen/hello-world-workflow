@@ -1,0 +1,32 @@
+{
+   "arrayed_input":[
+      {
+         "path":"/home/dyuen/hello-world-workflow/kern.log",
+         "class":"File"
+      },
+      {
+         "path":"/home/dyuen/hello-world-workflow/kern.log",
+         "class":"File"
+      },
+      {
+         "path":"/home/dyuen/hello-world-workflow/kern.log",
+         "class":"File"
+      }
+   ],
+   "hello_input":{
+      "path":"/home/dyuen/hello-world-workflow/kern.log",
+      "class":"File"
+   },
+   "hello_output":{
+      "path":"/home/dyuen/hello-world-workflow/kern.log",
+      "class":"File"
+   },
+   "ref_file_1":{
+      "path":"/home/dyuen/hello-world-workflow/kern.log",
+      "class":"File"
+   },
+   "ref_file_2":{
+      "path":"/home/dyuen/hello-world-workflow/kern.log",
+      "class":"File"
+   }
+}
