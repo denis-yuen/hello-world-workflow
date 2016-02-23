@@ -5,6 +5,8 @@ description: "Markdown description text here"
 id: "HelloWorld"
 label: "HelloWorld Tool"
 
+cwlVersion: "cwl:draft-3.dev3"
+
 dct:creator:
   "@id": "http://orcid.org/0000-0003-3566-7705"
   foaf:name: Peter Amstutz
@@ -13,12 +15,7 @@ dct:creator:
 requirements:
   - class: DockerRequirement
     dockerPull: "quay.io/collaboratory/workflow-helloworld:master"
-  - class: ExpressionEngineRequirement
-    id: "#node-engine"
-    requirements:
-    - class: DockerRequirement
-      dockerPull: commonworkflowlanguage/nodejs-engine
-    engineCommand: cwlNodeEngine.js
+  - class: InlineJavascriptRequirement
 
 hints:
   - class: ResourceRequirement
@@ -65,10 +62,8 @@ outputs:
 baseCommand: ["bash", "-c"]
 arguments:
   - valueFrom:
-      engine: "#node-engine"
-      script: |
-        "cat " + $job.hello_input.path + " > hello-output.txt &&"
-            + " ls " + $job.ref_file_1.path + " >> hello-output.txt && "
-            + " head -20 " + $job.ref_file_2.path + " >> hello-output.txt && "
-            + " wc -l " + $job.arrayed_input[0].path + " >> wc-output0.txt &&"
-            + " wc -l " + $job.arrayed_input[1].path + " >> wc-output1.txt"
+        $("cat " + inputs.hello_input.path + " > hello-output.txt &&"
+            + " ls " + inputs.ref_file_1.path + " >> hello-output.txt && "
+            + " head -20 " + inputs.ref_file_2.path + " >> hello-output.txt && "
+            + " wc -l " + inputs.arrayed_input[0].path + " >> wc-output0.txt &&"
+            + " wc -l " + inputs.arrayed_input[1].path + " >> wc-output1.txt")
